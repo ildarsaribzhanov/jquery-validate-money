@@ -1,0 +1,14 @@
+# Исключим из репозитория папки с картинками
+.idea/
+
+# Исключение .map файлов
+*.map
+
+*.json
+!package.json
+
+# Gulp
+/*.log
+node_modules/
+gulpfile.js
+package.json
