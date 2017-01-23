@@ -25,21 +25,21 @@
 					if( e.keyCode === 8 || e.keyCode === 46 ) {
 						setTimeout(function () {
 							$(self).val(format($(self).val()));
-						});
+						}, 1);
 						return true;
 					}
 
 					if( e.ctrlKey ) {
 						setTimeout(function () {
 							$(self).val(format($(self).val()));
-						});
+						}, 1);
 						return true;
 					}
 
 					if( def.indexOf(e.key) >= 0 ) {
 						setTimeout(function () {
 							$(self).val(format($(self).val()));
-						});
+						}, 1);
 						return true;
 					}
 
@@ -54,7 +54,7 @@
 					// чтобы установить курсор в конец строки
 					setTimeout(function () {
 						$(self).val(self.value);
-					}, 2);
+					}, 1);
 				}
 			};
 
