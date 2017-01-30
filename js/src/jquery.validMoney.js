@@ -5,7 +5,7 @@
 			var self = this;	// перепишем объект
 
 			$(document).ready(function () {
-				var def    = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.', ','],
+				var def    = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.', ',', '-', '+'],
 
 				    // клавиши, которые не влияют [ctrl, end, home, left, right, tab]
 				    access = [17, 35, 36, 37, 39, 9];
@@ -62,10 +62,18 @@
 				var res,
 				    int           = '',
 				    fraction      = '',
-				    has_separator = false;
+				    has_separator = false,
+				    octothorpe;
 
 				// точку меняем на запятую
 				val = val.replace(/\./g, ',');
+
+				// Выделим знак числа
+				octothorpe = val.slice(0, 1);
+
+				if( octothorpe !== '-' && octothorpe !== '+' ) {
+					octothorpe = '';
+				}
 
 				// оставляем только цифры и запятую
 				val = val.replace(/[^0-9,]/g, '');
@@ -106,7 +114,7 @@
 					res += fraction;
 				}
 
-				return res;
+				return octothorpe + res;
 			}
 		};
 
