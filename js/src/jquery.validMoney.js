@@ -59,11 +59,10 @@
 			};
 
 			function format( val ) {
-				var res,
-				    int           = '',
-				    fraction      = '',
-				    has_separator = false,
-				    octothorpe;
+				var res           = '',
+					fraction      = '',
+					has_separator = false,
+					octothorpe;
 
 				// точку меняем на запятую
 				val = val.replace(/\./g, ',');
@@ -78,20 +77,26 @@
 				// оставляем только цифры и запятую
 				val = val.replace(/[^0-9,]/g, '');
 
+				// Если есть запятая без символа в начале, добавим в начало 0
+				if( val.indexOf(',') === 0 ) {
+					val = '0' + val;
+				}
+
 				// разделим на целую и дробную части
 				val = val.split(',');
 
 				// форматирование целой части
 				while ( val[0].length > 3 ) {
-					int    = val[0].substr(val[0].length - 3) + ' ' + int;
+					res    = val[0].substr(val[0].length - 3) + ' ' + res;
 					val[0] = val[0].substr(0, val[0].length - 3);
 				}
-				int = val[0] + ' ' + int;
+				res = val[0] + ' ' + res;
 
 				// Убираем последний пробел справа
-				res = int.replace(/\s$/g, '');
-				// и ноль слева
-				res = res.replace(/^0/g, '');
+				res = res.replace(/\s$/g, '');
+
+				// И оставляем только 1 ноль слева, если их больше
+				res = res.replace(/^0([0-9])/g, '$1');
 
 				// форматирование дробной части, при наличии
 				if( val.length > 1 ) {
